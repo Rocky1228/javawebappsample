@@ -19,8 +19,8 @@ node {
     }
   
     stage('deploy') {
-      def resourceGroup = 'jenkins-get-started-rg'
-      def webAppName = 'Rocky1228'
+      def resourceGroup = '<resource_group>'
+      def webAppName = '<app_name>'
       // login Azure
       withCredentials([usernamePassword(credentialsId: 'AzureServicePrincipal', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID')]) {
        sh '''
@@ -35,6 +35,6 @@ node {
       sh "curl -T target/calculator-1.0.war $ftpProfile.url/webapps/ROOT.war -u '$ftpProfile.username:$ftpProfile.password'"
       // log out
       sh 'az logout'
-     }
-   }
- }
+    }
+  }
+}
